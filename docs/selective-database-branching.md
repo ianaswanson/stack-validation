@@ -29,7 +29,18 @@ All Vercel preview deployments use the **staging Neon branch** by default:
 - Database: Staging Neon branch (shared across all previews)
 - OAuth: Developer bypass enabled
 
-## Manual Workflow
+## Workflow with Claude Code (Recommended)
+
+**Tell Claude:** "Create isolated database for feature-xyz"
+
+Claude will use MCP tools to:
+1. Create Neon branch (via MCP)
+2. Wait for provisioning
+3. Get connection string (via MCP)
+4. Push Prisma schema
+5. Provide Vercel configuration steps
+
+## Manual Workflow (If Needed)
 
 ### Step 1: Create Neon Branch
 
@@ -102,20 +113,20 @@ vercel redeploy DEPLOYMENT_URL
 neonctl branches delete br-your-branch-id --project-id PROJECT_ID
 ```
 
-## Automated Workflow (Helper Script)
+## Automated Workflow (Claude Code with MCP)
 
-Use the `create-db-branch.sh` script to automate steps 1-4:
+When Claude Code has Neon MCP server configured, it can automate the entire workflow:
 
-```bash
-./create-db-branch.sh feature-name
-```
+**User says:** "Create isolated database for feature-add-user-roles"
 
-This will:
-1. Create Neon branch
-2. Wait for provisioning
-3. Get connection string
-4. Push Prisma schema
-5. Output instructions for Vercel configuration
+**Claude does:**
+1. Uses `mcp__Neon__create_branch` to create Neon branch
+2. Waits 10 seconds for provisioning
+3. Uses `mcp__Neon__get_connection_string` to get connection string
+4. Runs `npx prisma db push` with the new connection string
+5. Provides clear Vercel configuration instructions
+
+**No bash scripts needed** - Claude orchestrates everything via MCP tools.
 
 ## Example: Risky Migration Workflow
 
