@@ -28,9 +28,9 @@ Claude will follow the instructions in `FULL-STACK-SETUP.md` to create:
 - **[LOG.md](./LOG.md)** - Iteration history and learnings from stack1-stack20
 - **[STATUS.md](./STATUS.md)** - Current project status
 
-### Reference
-- **[docs/vercel-staging-url-findings.md](./docs/vercel-staging-url-findings.md)** - Technical details on Vercel preview URLs
+### Archive
 - **[archive/](./archive/)** - Previous bash script approach (deprecated)
+- **[docs/archive/](./docs/archive/)** - Historical findings and old documentation
 
 ## Templates
 
