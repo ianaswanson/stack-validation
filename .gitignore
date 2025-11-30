@@ -1,0 +1,22 @@
+# Stack validation test projects
+stack*/
+
+# Node modules
+node_modules/
+
+# Environment files
+.env
+.env.local
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+
+# Beads database
+.beads/
+
+# Temporary files
+/tmp/
+*.tmp

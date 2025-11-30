@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Steps - Full-Stack Setup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #2563eb;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        h3 {
+            color: #1f2937;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+
+        .step {
+            background: #f9fafb;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+            border-left: 5px solid #3b82f6;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .step-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #3b82f6;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .step-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .go-to {
+            background: #dbeafe;
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+
+        .go-to a {
+            color: #1e40af;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .go-to a:hover {
+            text-decoration: underline;
+        }
+
+        .copy-box {
+            position: relative;
+            margin: 15px 0;
+        }
+
+        .copy-box label {
+            display: block;
+            font-size: 0.9em;
+            color: #6b7280;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .copy-content {
+            background: #1f2937;
+            color: #e5e7eb;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copy-content code {
+            flex: 1;
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85em;
+            margin-left: 15px;
+            white-space: nowrap;
+            transition: background 0.2s;
+            font-weight: 500;
+        }
+
+        .copy-btn:hover {
+            background: #2563eb;
+        }
+
+        .copy-btn.copied {
+            background: #10b981;
+        }
+
+        .note {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .success {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .placeholder {
+            color: #f59e0b;
+            font-weight: 600;
+        }
+
+        ol {
+            margin-left: 25px;
+            margin-top: 10px;
+        }
+
+        ol li {
+            margin: 12px 0;
+            line-height: 1.8;
+        }
+
+        .input-box {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 6px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .input-box label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1f2937;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 0.95em;
+            font-family: 'Monaco', 'Courier New', monospace;
+        }
+
+        .values-summary {
+            background: #f0fdf4;
+            border: 2px solid #10b981;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        .values-summary h3 {
+            margin-top: 0;
+            color: #065f46;
+        }
+
+        .value-item {
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+        }
+
+        .value-item strong {
+            display: block;
+            color: #374151;
+            margin-bottom: 5px;
+        }
+
+        .value-item code {
+            color: #059669;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Manual Steps</h1>
+        <div class="subtitle">Only 3 things you need to do manually (setup.sh did everything else)</div>
+
+        <div class="note">
+            <strong>Before you start:</strong> Make sure you've run <code>./setup.sh</code> and it completed successfully. It should have given you some values at the end - keep those handy!
+        </div>
+
+        <!-- Step 1: Vercel URLs -->
+        <div class="step">
+            <div class="step-header">
+                <div class="step-num">1</div>
+                <div class="step-title">Get Your Vercel URLs</div>
+            </div>
+
+            <div class="go-to">
+                <strong>Go to:</strong> <a href="https://vercel.com/dashboard" target="_blank">https://vercel.com/dashboard</a>
+            </div>
+
+            <p>Find your project and note these two URLs:</p>
+
+            <div class="input-box">
+                <label>Production URL (from main branch):</label>
+                <input type="text" id="prodUrl" placeholder="e.g., my-app.vercel.app">
+            </div>
+
+            <div class="input-box">
+                <label>Staging URL (from staging branch):</label>
+                <input type="text" id="stagingUrl" placeholder="e.g., my-app-git-staging-username.vercel.app">
+            </div>
+
+            <div class="note">
+                <strong>Tip:</strong> You can find these under your project → Deployments → Look for "main" and "staging" branch deployments
+            </div>
+        </div>
+
+        <!-- Step 2: Google OAuth -->
+        <div class="step">
+            <div class="step-header">
+                <div class="step-num">2</div>
+                <div class="step-title">Set Up Google OAuth</div>
+            </div>
+
+            <div class="go-to">
+                <strong>Go to:</strong> <a href="https://console.cloud.google.com/apis/credentials" target="_blank">https://console.cloud.google.com/apis/credentials</a>
+            </div>
+
+            <ol>
+                <li>Click "Create Credentials" → "OAuth 2.0 Client ID"</li>
+                <li>Application type: <strong>Web application</strong></li>
+                <li>Name: <strong>My App</strong> (or whatever you want)</li>
+                <li>Authorized redirect URIs → Click "Add URI" three times and paste these:</li>
+            </ol>
+
+            <div class="copy-box">
+                <label>Local redirect URI:</label>
+                <div class="copy-content">
+                    <code>http://localhost:3000/api/auth/callback/google</code>
+                    <button class="copy-btn" onclick="copy(this, 'http://localhost:3000/api/auth/callback/google')">Copy</button>
+                </div>
+            </div>
+
+            <div class="copy-box">
+                <label>Staging redirect URI (paste your staging URL first in Step 1):</label>
+                <div class="copy-content">
+                    <code id="stagingRedirect">https://<span class="placeholder">YOUR-STAGING-URL</span>/api/auth/callback/google</code>
+                    <button class="copy-btn" onclick="copyStagingRedirect(this)">Copy</button>
+                </div>
+            </div>
+
+            <div class="copy-box">
+                <label>Production redirect URI (paste your production URL first in Step 1):</label>
+                <div class="copy-content">
+                    <code id="prodRedirect">https://<span class="placeholder">YOUR-PRODUCTION-URL</span>/api/auth/callback/google</code>
+                    <button class="copy-btn" onclick="copyProdRedirect(this)">Copy</button>
+                </div>
+            </div>
+
+            <ol start="5">
+                <li>Click "Create"</li>
+                <li><strong>Copy the Client ID and Client Secret</strong> (you'll need them in Step 3)</li>
+            </ol>
+
+            <div class="input-box">
+                <label>Google Client ID:</label>
+                <input type="text" id="googleClientId" placeholder="Paste from Google Cloud Console">
+            </div>
+
+            <div class="input-box">
+                <label>Google Client Secret:</label>
+                <input type="text" id="googleClientSecret" placeholder="Paste from Google Cloud Console">
+            </div>
+        </div>
+
+        <!-- Step 3: Vercel Environment Variables -->
+        <div class="step">
+            <div class="step-header">
+                <div class="step-num">3</div>
+                <div class="step-title">Add Environment Variables to Vercel</div>
+            </div>
+
+            <div class="note">
+                <strong>You'll need:</strong> The values from <code>setup.sh</code> output + the Google OAuth values you just created
+            </div>
+
+            <div class="input-box">
+                <label>NEXTAUTH_SECRET (from setup.sh output):</label>
+                <input type="text" id="nextauthSecret" placeholder="Paste from setup.sh output">
+            </div>
+
+            <div class="input-box">
+                <label>STAGING_DB_URL (from setup.sh output):</label>
+                <input type="text" id="stagingDbUrl" placeholder="Paste from setup.sh output">
+            </div>
+
+            <div class="input-box">
+                <label>PRODUCTION_DB_URL (from setup.sh output):</label>
+                <input type="text" id="prodDbUrl" placeholder="Paste from setup.sh output">
+            </div>
+
+            <h3>Copy and run these commands:</h3>
+
+            <div class="copy-box">
+                <label>1. Staging Database:</label>
+                <div class="copy-content">
+                    <code id="cmd1">printf '<span class="placeholder">STAGING_DB_URL</span>' | vercel env add DATABASE_URL preview</code>
+                    <button class="copy-btn" onclick="copyCmd(this, 'cmd1', 'stagingDbUrl')">Copy</button>
+                </div>
+            </div>
+
+            <div class="copy-box">
+                <label>2. Production Database:</label>
+                <div class="copy-content">
+                    <code id="cmd2">printf '<span class="placeholder">PRODUCTION_DB_URL</span>' | vercel env add DATABASE_URL production</code>
+                    <button class="copy-btn" onclick="copyCmd(this, 'cmd2', 'prodDbUrl')">Copy</button>
+                </div>
+            </div>
+
+            <div class="copy-box">
+                <label>3. NextAuth Secret (both environments):</label>
+                <div class="copy-content">
+                    <code id="cmd3">printf '<span class="placeholder">NEXTAUTH_SECRET</span>' | vercel env add NEXTAUTH_SECRET preview production</code>
+                    <button class="copy-btn" onclick="copyCmd(this, 'cmd3', 'nextauthSecret')">Copy</button>
+                </div>
+            </div>
+
+            <div class="copy-box">
+                <label>4. Staging URL:</label>
+                <div class="copy-content">
+                    <code id="cmd4">printf 'https://<span class="placeholder">STAGING_URL</span>' | vercel env add NEXTAUTH_URL preview</code>
+                    <button class="copy-btn" onclick="copyCmdUrl(this, 'cmd4', 'stagingUrl')">Copy</button>
+                </div>
+            </div>
+
+            <div class="copy-box">
+                <label>5. Production URL:</label>
+                <div class="copy-content">
+                    <code id="cmd5">printf 'https://<span class="placeholder">PRODUCTION_URL</span>' | vercel env add NEXTAUTH_URL production</code>
+                    <button class="copy-btn" onclick="copyCmdUrl(this, 'cmd5', 'prodUrl')">Copy</button>
+                </div>
+            </div>
+
+            <div class="copy-box">
+                <label>6. Google Client ID (both environments):</label>
+                <div class="copy-content">
+                    <code id="cmd6">printf '<span class="placeholder">GOOGLE_CLIENT_ID</span>' | vercel env add GOOGLE_CLIENT_ID preview production</code>
+                    <button class="copy-btn" onclick="copyCmd(this, 'cmd6', 'googleClientId')">Copy</button>
+                </div>
+            </div>
+
+            <div class="copy-box">
+                <label>7. Google Client Secret (both environments):</label>
+                <div class="copy-content">
+                    <code id="cmd7">printf '<span class="placeholder">GOOGLE_CLIENT_SECRET</span>' | vercel env add GOOGLE_CLIENT_SECRET preview production</code>
+                    <button class="copy-btn" onclick="copyCmd(this, 'cmd7', 'googleClientSecret')">Copy</button>
+                </div>
+            </div>
+
+            <h3>Redeploy to apply changes:</h3>
+            <div class="copy-box">
+                <div class="copy-content">
+                    <code>git commit --allow-empty -m "Trigger redeploy" && git push</code>
+                    <button class="copy-btn" onclick="copy(this, 'git commit --allow-empty -m \"Trigger redeploy\" && git push')">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="success" style="margin-top: 40px;">
+            <h2 style="margin-top: 0; color: #065f46;">🎉 You're Done!</h2>
+            <p>Your full-stack app is now deployed with:</p>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>✅ Local development (localhost:3000)</li>
+                <li>✅ Staging environment (Vercel + Neon staging)</li>
+                <li>✅ Production environment (Vercel + Neon production)</li>
+                <li>✅ Google OAuth working everywhere</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function copy(button, text) {
+            navigator.clipboard.writeText(text).then(() => {
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        function copyStagingRedirect(button) {
+            const stagingUrl = document.getElementById('stagingUrl').value;
+            if (!stagingUrl) {
+                alert('Please enter your staging URL in Step 1 first');
+                return;
+            }
+            const text = `https://${stagingUrl}/api/auth/callback/google`;
+            copy(button, text);
+        }
+
+        function copyProdRedirect(button) {
+            const prodUrl = document.getElementById('prodUrl').value;
+            if (!prodUrl) {
+                alert('Please enter your production URL in Step 1 first');
+                return;
+            }
+            const text = `https://${prodUrl}/api/auth/callback/google`;
+            copy(button, text);
+        }
+
+        function copyCmd(button, cmdId, inputId) {
+            const value = document.getElementById(inputId).value;
+            if (!value) {
+                alert('Please fill in the required field above first');
+                return;
+            }
+            const template = document.getElementById(cmdId).textContent;
+            // Extract the command pattern
+            const match = template.match(/printf '.*?' \| vercel env add (.*)/);
+            if (match) {
+                const text = `printf '${value}' | vercel env add ${match[1]}`;
+                copy(button, text);
+            }
+        }
+
+        function copyCmdUrl(button, cmdId, inputId) {
+            const value = document.getElementById(inputId).value;
+            if (!value) {
+                alert('Please fill in the required URL field above first');
+                return;
+            }
+            const template = document.getElementById(cmdId).textContent;
+            const match = template.match(/printf 'https:\/\/.*?' \| vercel env add (.*)/);
+            if (match) {
+                const text = `printf 'https://${value}' | vercel env add ${match[1]}`;
+                copy(button, text);
+            }
+        }
+
+        // Update redirect URIs when URLs are entered
+        document.getElementById('stagingUrl').addEventListener('input', function(e) {
+            const url = e.target.value;
+            document.getElementById('stagingRedirect').innerHTML =
+                `https://${url || '<span class="placeholder">YOUR-STAGING-URL</span>'}/api/auth/callback/google`;
+        });
+
+        document.getElementById('prodUrl').addEventListener('input', function(e) {
+            const url = e.target.value;
+            document.getElementById('prodRedirect').innerHTML =
+                `https://${url || '<span class="placeholder">YOUR-PRODUCTION-URL</span>'}/api/auth/callback/google`;
+        });
+    </script>
+</body>
+</html>
