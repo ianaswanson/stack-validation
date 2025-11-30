@@ -4,14 +4,12 @@
 
 **Goal**: User says "Create full-stack project called X with Google OAuth" → Claude follows these instructions → Working app in local, staging, production.
 
-**Templates**: This setup uses reusable templates from `utilities/templates/`:
+**Templates**: This setup uses reusable templates from `templates/`:
 - `auth/login-page.tsx` - Clean, Mobbin-style login with Google OAuth
-- `auth/dashboard-page.tsx` - Professional protected dashboard
+- `auth/dashboard-page.tsx` - Professional protected dashboard with sign-out in header
 - `auth/session-provider.tsx` - NextAuth SessionProvider wrapper
 - `components/google-logo.tsx` - Official Google brand logo
 - All templates use Claudian design system tokens (no hardcoded values)
-
-See `utilities/templates/README.md` for template documentation.
 
 ---
 
@@ -407,21 +405,21 @@ export { handler as GET, handler as POST };
 
 ### Step 1.11: Copy Google Logo Component from Template
 
-**Source**: `utilities/templates/components/google-logo.tsx`
+**Source**: `templates/components/google-logo.tsx`
 **Destination**: `components/google-logo.tsx`
 
 ```bash
 mkdir -p components
-cp utilities/templates/components/google-logo.tsx components/google-logo.tsx
+cp templates/components/google-logo.tsx components/google-logo.tsx
 ```
 
 ### Step 1.12: Copy SessionProvider from Template
 
-**Source**: `utilities/templates/auth/session-provider.tsx`
+**Source**: `templates/auth/session-provider.tsx`
 **Destination**: `components/session-provider.tsx`
 
 ```bash
-cp utilities/templates/auth/session-provider.tsx components/session-provider.tsx
+cp templates/auth/session-provider.tsx components/session-provider.tsx
 ```
 
 ### Step 1.13: Update Root Layout
@@ -451,11 +449,11 @@ export default function RootLayout({
 
 ### Step 1.14: Copy Login Page from Template
 
-**Source**: `utilities/templates/auth/login-page.tsx`
+**Source**: `templates/auth/login-page.tsx`
 **Destination**: `app/page.tsx`
 
 ```bash
-cp utilities/templates/auth/login-page.tsx app/page.tsx
+cp templates/auth/login-page.tsx app/page.tsx
 ```
 
 **Then replace** `%%PROJECT_NAME%%` with actual project name:
@@ -473,12 +471,12 @@ sed -i '' "s/%%PROJECT_NAME%%/$PROJECT_NAME/g" app/page.tsx
 
 ### Step 1.15: Copy Dashboard Page from Template
 
-**Source**: `utilities/templates/auth/dashboard-page.tsx`
+**Source**: `templates/auth/dashboard-page.tsx`
 **Destination**: `app/dashboard/page.tsx`
 
 ```bash
 mkdir -p app/dashboard
-cp utilities/templates/auth/dashboard-page.tsx app/dashboard/page.tsx
+cp templates/auth/dashboard-page.tsx app/dashboard/page.tsx
 ```
 
 **Then replace** `%%PROJECT_NAME%%` with actual project name:
