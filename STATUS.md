@@ -1,6 +1,6 @@
 # Status
 
-**Last session:** 2025-11-30
-**Current state:** Terms of Service UX refinement complete - improved UI design, simplified acceptance flow (scroll + accept)
-**Next up:** Ready for production use - consider syncing improvements back to template
+**Last session:** 2025-12-02
+**Current state:** Template improvements complete - synced auth enhancements from stack20, documentation updated
+**Next up:** Test template changes by creating new stack (stack-validation-5pi)
 **Blocked on:** Nothing
