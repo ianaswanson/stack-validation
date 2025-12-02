@@ -5,7 +5,8 @@
 **Goal**: User says "Create full-stack project called X with Google OAuth" → Claude follows these instructions → Working app in local, staging, production.
 
 **Templates**: This setup uses reusable templates from `templates/`:
-- `auth/login-page.tsx` - Clean, Mobbin-style login with Google OAuth
+- `auth/login-page.tsx` - Full-featured auth UI with magic link + password + Google OAuth
+- `auth/settings-page.tsx` - Complete settings page with password management
 - `auth/dashboard-page.tsx` - Professional protected dashboard with sign-out in header
 - `auth/session-provider.tsx` - NextAuth SessionProvider wrapper
 - `components/google-logo.tsx` - Official Google brand logo
@@ -464,7 +465,11 @@ sed -i '' "s/%%PROJECT_NAME%%/$PROJECT_NAME/g" app/page.tsx
 
 **Features included**:
 - Clean, Mobbin-style centered card layout
+- **Dual auth modes**: Magic link (passwordless) and password sign-in with toggle
 - Google OAuth integration with NextAuth
+- **Forgot password flow** via magic link
+- Enhanced error/success messages with icons
+- Inline button styles with hover states
 - Developer bypass mode (dev/preview only)
 - Uses Claudian design system tokens
 - Professional loading states and redirects
@@ -493,7 +498,32 @@ sed -i '' "s/%%PROJECT_NAME%%/$PROJECT_NAME/g" app/dashboard/page.tsx
 - Quick stats/cards layout
 - Uses Claudian design system tokens
 
-### Step 1.16: Install Tailwind Config with Design System
+### Step 1.16: Copy Settings Page from Template (Optional)
+
+**Source**: `templates/auth/settings-page.tsx`
+**Destination**: `app/settings/page.tsx`
+
+```bash
+mkdir -p app/settings
+cp templates/auth/settings-page.tsx app/settings/page.tsx
+```
+
+**Features included**:
+- **Profile management**: Update user name
+- **Password management**: Set/change password with current password validation
+- **Password requirements display**: Real-time validation with visual feedback on focus
+- Password strength indicators (length, uppercase, lowercase, number, special char)
+- Enhanced success/error messages with icons
+- Session-protected route
+- Uses Claudian design system tokens
+
+**Note**: Requires API routes for user updates:
+- `/api/user/update-name` - Update user display name
+- `/api/user/update-password` - Set or change password
+
+These API routes need to be implemented separately based on your authentication strategy (credentials provider + bcrypt, or another approach).
+
+### Step 1.17: Install Tailwind Config with Design System
 
 **Purpose**: Use Claudian design system tokens for consistent styling
 
@@ -567,7 +597,7 @@ EOF
 
 **Note**: This embeds the complete Claudian design system. Each project gets its own copy for independence from the monorepo.
 
-### Step 1.17: Update package.json Dev Script
+### Step 1.18: Update package.json Dev Script
 
 **Modify** `scripts.dev` in package.json:
 
@@ -581,7 +611,7 @@ EOF
 
 **Replace**: NEXTJS_PORT with actual port
 
-### Step 1.18: Create Caddy Config for Local Domain
+### Step 1.19: Create Caddy Config for Local Domain
 
 **Purpose**: Enable accessing the project via `PROJECT_NAME.test` instead of `localhost:PORT`
 
@@ -609,7 +639,7 @@ caddy reload --config /opt/homebrew/etc/Caddyfile
 - Check syntax: `caddy validate --config /opt/homebrew/etc/Caddyfile`
 - Check Caddy is running: `brew services list | grep caddy`
 
-### Step 1.19: Start Dev Server
+### Step 1.20: Start Dev Server
 
 ```bash
 npm run dev &
