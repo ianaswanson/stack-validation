@@ -1,6 +1,6 @@
 # Status
 
 **Last session:** 2025-11-30
-**Current state:** Complete Terms of Service system - API Routes + tRPC variants, tested in stack20, full documentation
-**Next up:** Ready for production use in new projects (both approaches validated)
+**Current state:** Terms of Service UX refinement complete - improved UI design, simplified acceptance flow (scroll + accept)
+**Next up:** Ready for production use - consider syncing improvements back to template
 **Blocked on:** Nothing
